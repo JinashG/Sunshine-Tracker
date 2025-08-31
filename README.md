@@ -19,7 +19,7 @@ Sunshine Tracker is a mobile application built with React Native and Expo that a
 ### Mobile Application Setup
 1. Navigate to the `mobile` directory:
    ```
-   cd mobile
+   cd SunApp
    ```
 2. Install the necessary dependencies:
    ```
@@ -29,7 +29,19 @@ Sunshine Tracker is a mobile application built with React Native and Expo that a
    ```
    npm start
    ```
-
+### Web
+1. Navigate to the `Web` directory:
+   ```
+   cd Web
+   ```
+2. Install the necessary dependencies:
+   ```
+   npm install
+   ```
+3. Start the Expo development server:
+   ```
+   npm start
+   ```
 ### Backend Setup
 1. Navigate to the `backend` directory:
    ```
