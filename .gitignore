@@ -1,0 +1,74 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+SunApp/node_modules/
+
+# Expo
+SunApp/.expo/
+SunApp/dist/
+SunApp/web-build/
+SunApp/expo-env.d.ts
+
+# Native
+SunApp/.kotlin/
+SunApp/*.orig.*
+SunApp/*.jks
+SunApp/*.p8
+SunApp/*.p12
+SunApp/*.key
+SunApp/*.mobileprovision
+
+# Metro
+SunApp/.metro-health-check*
+
+# debug
+SunApp/npm-debug.*
+SunApp/yarn-debug.*
+SunApp/yarn-error.*
+
+# macOS
+SunApp/.DS_Store
+SunApp/*.pem
+
+# local env files
+SunApp/.env*.local
+
+# typescript
+SunApp/*.tsbuildinfo
+
+Web/node_modules/
+
+# Expo
+Web/.expo/
+Web/dist/
+Web/web-build/
+Web/expo-env.d.ts
+
+# Native
+Web/.kotlin/
+Web/*.orig.*
+Web/*.jks
+Web/*.p8
+Web/*.p12
+Web/*.key
+Web/*.mobileprovision
+
+# Metro
+Web/.metro-health-check*
+
+# debug
+Web/npm-debug.*
+Web/yarn-debug.*
+Web/yarn-error.*
+
+# macOS
+Web/.DS_Store
+Web/*.pem
+
+# local env files
+Web/.env*.local
+
+# typescript
+Web/*.tsbuildinfo
+
+backend/_pycache_/
