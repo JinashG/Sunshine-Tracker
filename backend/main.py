@@ -17,7 +17,7 @@ app.add_middleware(
 @app.get("/sunshine")
 def get_sunshine():
     data = []
-    for i in range(60):  # 7 days
+    for i in range(60):  
         data.append({
             "date": (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d"),
             "hours": round(random.uniform(2, 10), 2)

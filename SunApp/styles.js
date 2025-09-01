@@ -16,7 +16,6 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
 
-  // Header
   headerTitle: {
     fontSize: isMobile ? 28 : 32,
     fontWeight: "700",
@@ -33,7 +32,6 @@ export default StyleSheet.create({
     letterSpacing: 0.5,
   },
 
-  // Toggle
   toggleRow: {
     flexDirection: "row",
     borderRadius: 30,
@@ -75,7 +73,6 @@ export default StyleSheet.create({
     color: "#111827",
   },
 
-  // Card
   card: {
     backgroundColor: "#fff",
     borderRadius: 24,
@@ -95,7 +92,6 @@ export default StyleSheet.create({
     letterSpacing: -0.5,
   },
 
-  // LineChart
   lineChart: {
     borderRadius: 10,
     marginVertical: 0,
@@ -109,7 +105,6 @@ export default StyleSheet.create({
     letterSpacing: 0.5,
   },
 
-  // Insights
   insightsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -143,28 +138,27 @@ export default StyleSheet.create({
     letterSpacing: 0.5,
   },
 
-  // Pie Chart legend
   pieLegendPill: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     borderRadius: 20,
-    paddingVertical: 6,         // was 8
-    paddingHorizontal: 10,      // was 16
-    marginBottom: 8,            // was 10
+    paddingVertical: 6,     
+    paddingHorizontal: 10,     
+    marginBottom: 8,            
     elevation: 2,
     shadowColor: "#facc15",
     shadowOpacity: 0.10,
     shadowOffset: { width: 0, height: 1 },
   },
   pieLegendText: {
-    fontSize: 13,               // was 15
+    fontSize: 13,              
     fontWeight: "700",
     color: "#111827",
-    marginLeft: 6,              // was 8
+    marginLeft: 6,             
     letterSpacing: 0.5,
   },
-  // Footer
+
   footer: {
     fontSize: isMobile ? 13 : 14,
     color: "#6b7280",

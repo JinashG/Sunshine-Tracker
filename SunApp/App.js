@@ -9,15 +9,37 @@ import styles from "./styles";
 
 export default function App() {
   const [data, setData] = useState([]);
-  const [mode, setMode] = useState("week"); // day | week | month
+  const [mode, setMode] = useState("week"); 
 
-  // Safe number parser
+  const [time, setTime] = useState("");
+
+  
   const safeNumber = (val) => {
     const num = Number(val);
     return isNaN(num) || !isFinite(num) ? 0 : num;
   };
 
   useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      const formatted =
+        now.toLocaleString("en-US", {
+          month: "short",
+          day: "2-digit",
+        }) +
+        ", " +
+        now.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        });
+      setTime(formatted);
+    };
+
+    update();
+    const interval = setInterval(update, 60000); 
+
+    
     fetch("http://10.0.2.2:8000/sunshine")
       .then((res) => res.json())
       .then((json) => {
@@ -25,9 +47,10 @@ export default function App() {
         setData(sunshineData);
       })
       .catch((err) => console.error(err));
+    return () => clearInterval(interval);
   }, []);
 
-  // Safe comparison function
+
   const getComparisonData = () => {
     if (!data.length) return { previous: [], current: [] };
 
@@ -65,21 +88,21 @@ export default function App() {
       <View style={styles.wrapper}>
         <Text style={styles.headerTitle}>SUNSHINE DURATION</Text>
         <Text style={styles.headerSub}>SOURCE: FAST API (MOCK)</Text>
-        <Text style={styles.headerSub}>UPDATED :AUG 31, 22:00</Text>
+       <Text style={styles.headerSub}>UPDATED: {time ? time : "..."}</Text>
 
-        {/* Toggle */}
+        
         <ToggleMode mode={mode} setMode={setMode} />
 
-        {/* Line Chart */}
+      
         <LineChartCard previous={previous} current={current} mode={mode} safeNumber={safeNumber} />
 
-        {/* Insights */}
+        
         <InsightsCard previous={previous} current={current} safeNumber={safeNumber} />
 
-        {/* Pie Chart */}
+      
         <PieChartCard previous={previous} current={current} safeNumber={safeNumber} mode={mode} />
 
-        {/* Footer */}
+       
         <Text style={styles.footer}>
           Timezone: IST · Units: hours/day{"\n"}
           Data randomized for demo

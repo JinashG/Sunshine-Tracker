@@ -3,11 +3,11 @@ import { View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import styles from "./styles";
 
-const CARD_HORIZONTAL_MARGIN = 40; // If your card uses marginHorizontal: 20
-const CARD_PADDING = 40;           // If your card uses padding: 20
+const CARD_HORIZONTAL_MARGIN = 40; 
+const CARD_PADDING = 40;          
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const CARD_WIDTH = SCREEN_WIDTH - CARD_HORIZONTAL_MARGIN;
-const CHART_WIDTH = CARD_WIDTH - CARD_PADDING + 40; // add 40px extra space
+const CHART_WIDTH = CARD_WIDTH - CARD_PADDING + 40; 
 
 const COLORS = ["#f59e0b", "#facc15"];
 
@@ -21,11 +21,23 @@ export default function LineChartCard({ previous = [], current = [], mode = "wee
   else if (mode === "month") labelIndexes = [0, Math.floor(totalPoints / 3), Math.floor((2 * totalPoints) / 3), totalPoints - 1];
   else labelIndexes = filteredData.map((_, i) => i);
 
-const labels = filteredData.map((d, i) => (labelIndexes.includes(i) ? d.date : ""));
-labels.push(""); // Add this line
+let labels = filteredData.map((d, i) => {
+  if (!labelIndexes.includes(i)) return "";
+
+  const dateObj = new Date(d.date);
+  return `${dateObj.getDate()}/${dateObj.getMonth() + 1}`;
+});
 
 const dataPoints = filteredData.map((d) => safeNumber(d?.hours));
-dataPoints.push(null); // Add a null data point to match the extra label
+
+if (
+  (mode === "day" && filteredData.length < 2) ||
+  (mode === "week" && filteredData.length < 7) ||
+  (mode === "month" && filteredData.length < 30)
+) {
+  labels.push("");
+  dataPoints.push(null);
+}
 
   return (
     <View style={styles.card}>
@@ -43,8 +55,8 @@ dataPoints.push(null); // Add a null data point to match the extra label
             },
           ],
         }}
-        width={CHART_WIDTH } 
-        height={220}
+        width={CHART_WIDTH *.85} 
+        height={180}
         chartConfig={{
           backgroundColor: "#fff",
           backgroundGradientFrom: "#fff",
@@ -60,8 +72,9 @@ dataPoints.push(null); // Add a null data point to match the extra label
         bezier
         style={[
           styles.lineChart,
-          { marginLeft:-20
-           } // <-- Add this line to shift chart to the left
+          { marginLeft:-20,
+            alignSelf: "center"
+           } 
         ]}
         withInnerLines={true}
         withOuterLines={false}

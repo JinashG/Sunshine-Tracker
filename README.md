@@ -63,11 +63,7 @@ Sunshine Tracker is a mobile application built with React Native and Expo that a
 
 ## Usage
 - Open the mobile app to view the current sunlight data on the Home Screen.
-- Navigate to the Compare Screen to analyze sunlight duration across different time frames.
-- Access the History Screen to view past sunlight data.
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for more details.

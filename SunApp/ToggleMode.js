@@ -13,7 +13,6 @@ export default function ToggleMode({ mode, setMode }) {
           style={[
             styles.toggle,
             mode === opt && styles.toggleActive,
-            // Add shadow to active
             mode === opt && styles.toggleActiveShadow,
           ]}
           onPress={() => setMode(opt)}

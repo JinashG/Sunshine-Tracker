@@ -13,20 +13,30 @@ const LegendPill = ({ color, label }) => (
   </View>
 );
 
-export default function PieChartCard({ previous = [], current = [], safeNumber, mode = "week" }) {
+export default function PieChartCard({
+  previous = [],
+  current = [],
+  safeNumber,
+  mode = "week",
+}) {
   const prevTotal = previous.reduce((acc, d) => acc + safeNumber(d?.hours), 0);
   const currTotal = current.reduce((acc, d) => acc + safeNumber(d?.hours), 0);
 
+  const prevLabel =
+    mode === "day" ? "Yesterday" : mode === "week" ? "Last Week" : "Last Month";
+  const currLabel =
+    mode === "day" ? "Today" : mode === "week" ? "This Week" : "This Month";
+
   const pieData = [
     {
-      name: mode === "week" ? "Last Week" : "Last Month",
+      name: prevLabel,
       population: prevTotal,
       color: COLORS[1],
       legendFontColor: "#111827",
       legendFontSize: 12,
     },
     {
-      name: mode === "week" ? "This Week" : "This Month",
+      name: currLabel,
       population: currTotal,
       color: COLORS[0],
       legendFontColor: "#111827",
@@ -36,18 +46,22 @@ export default function PieChartCard({ previous = [], current = [], safeNumber, 
 
   return (
     <View style={styles.card}>
-      <Text style={styles.cardTitle}>Historical trends</Text>
-      <View style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-      }}>
-        <View style={{
-          width: PIE_SIZE + 20,
+      <Text style={styles.cardTitle}>Historical Trends</Text>
+      <View
+        style={{
+          flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
-        }}>
+          width: "100%",
+        }}
+      >
+        <View
+          style={{
+            width: PIE_SIZE + 20,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <PieChart
             data={pieData}
             width={PIE_SIZE}
@@ -61,12 +75,14 @@ export default function PieChartCard({ previous = [], current = [], safeNumber, 
             hasLegend={false}
           />
         </View>
-        <View style={{
-          justifyContent: "center",
-          marginLeft: 12,
-        }}>
-          <LegendPill color={COLORS[0]} label={mode === "week" ? "THIS WEEK" : "THIS MONTH"} />
-          <LegendPill color={COLORS[1]} label={mode === "week" ? "LAST WEEK" : "LAST MONTH"} />
+        <View
+          style={{
+            justifyContent: "center",
+            marginLeft: 12,
+          }}
+        >
+          <LegendPill color={COLORS[0]} label={currLabel.toUpperCase()} />
+          <LegendPill color={COLORS[1]} label={prevLabel.toUpperCase()} />
         </View>
       </View>
     </View>

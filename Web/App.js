@@ -20,17 +20,38 @@ const isMobile = Dimensions.get("window").width < 600 || Platform.OS !== "web";
 
 export default function App() {
   const [data, setData] = useState([]);
-  const [mode, setMode] = useState("week"); // "day" | "week" | "month"
-
-  // Fetch backend data
+  const [mode, setMode] = useState("week"); 
+  const [time, setTime] = useState("");
+ 
   useEffect(() => {
+
+    const update = () => {
+      const now = new Date();
+      const formatted =
+        now.toLocaleString("en-US", {
+          month: "short",
+          day: "2-digit",
+        }) +
+        ", " +
+        now.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        });
+      setTime(formatted);
+    };
+
+    update();
+    const interval = setInterval(update, 60000);
+
      fetch("http://127.0.0.1:8000/sunshine")
       .then((res) => res.json())
       .then((json) => setData(json.sunshine || []))
       .catch((err) => console.error(err));
+    return () => clearInterval(interval);
   }, []);
 
-  // ---- Split into previous vs current periods ----
+ 
   const getComparisonData = () => {
     if (!data.length) return { current: [], previous: [] };
 
@@ -58,14 +79,14 @@ export default function App() {
   const { current, previous } = getComparisonData();
   const filteredData = [...previous, ...current];
 
-  // ---- Insights ----
+  
   const allHours = filteredData.map((d) => d.hours);
   const avg =
     allHours.reduce((sum, h) => sum + h, 0) / (allHours.length || 1);
   const max = Math.max(...allHours, 0);
   const min = Math.min(...allHours, 10);
 
-  // ---- Pie chart data ----
+  
   const pieData =
     mode === "day"
       ? [
@@ -92,12 +113,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
-        {/* Header */}
+       
         <Text style={styles.headerTitle}>SUNSHINE DURATION</Text>
         <Text style={styles.headerSub}>SOURCE: FAST API (MOCK)</Text>
-        <Text style={styles.headerSub}>UPDATED: AUG 28, 22:00</Text>
+        <Text style={styles.headerSub}>UPDATED: {time ? time : "..."}</Text>
 
-        {/* Toggle */}
+        
         <View style={styles.toggleRow}>
           {["day", "week", "month"].map((item) => (
             <TouchableOpacity
@@ -120,9 +141,9 @@ export default function App() {
           ))}
         </View>
 
-        {/* Charts + Insights */}
+        
         <View style={isMobile ? styles.column : styles.row}>
-          {/* Line Chart */}
+          
           <View style={[styles.card, styles.flex1]}>
             <Text style={styles.cardTitle}>
               {mode === "day"
@@ -151,7 +172,7 @@ export default function App() {
             <Text style={styles.legend}>⬤ Sunshine (hr)</Text>
           </View>
 
-          {/* Insights */}
+         
           <View style={[styles.card, styles.insightsCard]}>
             <Text style={styles.cardTitle}>Insights</Text>
             <View style={styles.insightsRow}>
@@ -170,7 +191,7 @@ export default function App() {
             </View>
           </View>
 
-          {/* Historical Trends */}
+          
           <View style={[styles.card, styles.flex1]}>
             <Text style={styles.cardTitle}>Historical trends</Text>
             <View style={{ width: "100%", height: isMobile ? 200 : 250 }}>
