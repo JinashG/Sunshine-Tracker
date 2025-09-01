@@ -12,7 +12,7 @@ export default StyleSheet.create({
     width: "100%",
   },
 
-  // Header
+ 
   headerTitle: {
     fontSize: 20,
     fontWeight: "700",
@@ -24,37 +24,35 @@ export default StyleSheet.create({
     color: "#6b7280",
   },
 
-  // Toggle
+  
  toggleRow: {
   flexDirection: "row",
   marginVertical: 16,
-  borderRadius: 12, // make the row pill-shaped
-  overflow: "hidden", // ensures active button doesn't overflow
+  borderRadius: 12, 
+  overflow: "hidden", 
 },
 
 toggle: {
   flex: 1,
   paddingVertical: 10,
   alignItems: "center",
-  backgroundColor: "#fff", // inactive = white
+  backgroundColor: "#fff", 
 },
 
 toggleActive: {
-  backgroundColor: "#f59e0b", // active = orange
+  backgroundColor: "#FFC900",
 },
 
 toggleText: {
   fontSize: 14,
   fontWeight: "600",
-  color: "#1f2937", // inactive = dark text for readability
+  color: "#1f2937", 
 },
 
 toggleTextActive: {
-  color: "#fff", // active = white text
+  color: "#fff", 
 },
 
-
-  // Layout
   row: {
     flexDirection: "row",
     gap: 20,
@@ -67,7 +65,7 @@ toggleTextActive: {
     marginBottom: 20,
   },
 
-  // Cards
+
   card: {
     backgroundColor: "#fff",
     borderRadius: 16,
@@ -92,7 +90,7 @@ toggleTextActive: {
     color: "#111827",
   },
 
-  // Insights
+
   insightsRow: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -108,7 +106,7 @@ toggleTextActive: {
     paddingHorizontal: 10,
   },
   pillDot: {
-    color: "#f59e0b",
+    color: "#FFC900",
     marginRight: 4,
   },
   pillText: {
@@ -117,14 +115,14 @@ toggleTextActive: {
     color: "#111827",
   },
 
-  // Chart legend
+
   legend: {
     marginTop: 6,
     fontSize: 12,
-    color: "#374151",
+    color: "#D97706",
   },
 
-  // Footer
+
   footer: {
     marginTop: 20,
     fontSize: 12,

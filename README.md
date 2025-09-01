@@ -27,7 +27,7 @@ Sunshine Tracker is a mobile application built with React Native and Expo that a
    ```
 3. Start the Expo development server:
    ```
-   npm start
+   npx expo start -c
    ```
 ### Web
 1. Navigate to the `Web` directory:
@@ -58,7 +58,7 @@ Sunshine Tracker is a mobile application built with React Native and Expo that a
    ```
 4. Run the FastAPI application:
    ```
-   uvicorn main:app --reload
+   python -m uvicorn main:app --reload
    ```
 
 ## Usage

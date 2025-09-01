@@ -15,7 +15,7 @@ import {
 } from "recharts";
 import styles from "./styles";
 
-const COLORS = ["#f59e0b", "#facc15"];
+const COLORS = ["#D97706", "#FFC900"];
 const isMobile = Dimensions.get("window").width < 600 || Platform.OS !== "web";
 
 export default function App() {
@@ -162,7 +162,7 @@ export default function App() {
                   <Line
                     type="monotone"
                     dataKey="hours"
-                    stroke="#f59e0b"
+                    stroke="#D97706"
                     strokeWidth={2}
                     dot={{ r: 5 }}
                   />

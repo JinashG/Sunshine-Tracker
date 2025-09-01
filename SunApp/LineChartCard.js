@@ -9,7 +9,7 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 const CARD_WIDTH = SCREEN_WIDTH - CARD_HORIZONTAL_MARGIN;
 const CHART_WIDTH = CARD_WIDTH - CARD_PADDING + 40; 
 
-const COLORS = ["#f59e0b", "#facc15"];
+const COLORS = ["#D97706", "#FFC900"];
 
 export default function LineChartCard({ previous = [], current = [], mode = "week", safeNumber }) {
   const filteredData = [...previous, ...current];
